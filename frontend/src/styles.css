@@ -1,18 +1,16 @@
 :root {
-  --bg-warm: #f8f2e5;
-  --bg-warm-2: #efe6d5;
-  --card: #fffaf0;
-  --card-soft: #f3ebdd;
-  --surface: #ece7dc;
-  --text: #2f2a24;
-  --muted: #736a5f;
-  --border: #d9cbb6;
-  --accent: #d9a441;
-  --accent-strong: #c58f2e;
-  --accent-soft: #f3ddb2;
-  --sage: #8d9a6b;
-  --danger: #c24735;
-  --shadow: 0 8px 22px rgba(90, 67, 29, 0.08);
+  --bg: #eae2b7;
+  --surface: #f4f1de;
+  --card: #fffdf3;
+  --text: #1f2933;
+  --muted: #4a5560;
+  --border: #d8cfa7;
+  --primary: #003049;
+  --primary-2: #d62828;
+  --accent: #f77f00;
+  --accent-2: #fcbf49;
+  --danger: #d62828;
+  --shadow: 0 10px 24px rgba(0, 48, 73, 0.12);
 }
 
 * {
@@ -23,10 +21,7 @@ body {
   margin: 0;
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(circle at 10% 8%, rgba(224, 184, 79, 0.22), transparent 30%),
-    radial-gradient(circle at 90% 5%, rgba(141, 154, 107, 0.18), transparent 28%),
-    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg-warm-2) 100%);
+  background: var(--bg);
 }
 
 .container {
@@ -54,11 +49,13 @@ p {
 h1 {
   margin-bottom: 6px;
   font-size: 1.9rem;
+  color: var(--primary);
 }
 
 h2 {
   margin-bottom: 8px;
   font-size: 1.35rem;
+  color: var(--primary);
 }
 
 p {
@@ -74,12 +71,13 @@ p {
   margin-bottom: 6px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--sage);
+  color: var(--primary-2);
 }
 
 input,
 textarea,
-button {
+button,
+select {
   width: 100%;
   padding: 11px 12px;
   margin: 6px 0;
@@ -89,15 +87,17 @@ button {
 }
 
 input,
-textarea {
-  background: #fffdf7;
+textarea,
+select {
+  background: #fffef8;
   color: var(--text);
 }
 
 input:focus,
-textarea:focus {
-  outline: 2px solid #e7c370;
-  border-color: var(--accent);
+textarea:focus,
+select:focus {
+  outline: 2px solid #fcbf49;
+  border-color: var(--accent-2);
 }
 
 button {
@@ -106,13 +106,12 @@ button {
   background: var(--accent);
   color: #fff;
   font-weight: 700;
-  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 button:hover {
+  background: #dd7200;
   transform: translateY(-1px);
-  background: var(--accent-strong);
-  box-shadow: 0 8px 16px rgba(152, 104, 23, 0.2);
 }
 
 button.small {
@@ -128,20 +127,49 @@ button.danger {
 }
 
 button.danger:hover {
-  background: #9f3526;
+  background: #b31f1f;
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.96rem;
+  line-height: 1;
+  background: var(--accent-2);
+  color: #392700;
+}
+
+.icon-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.icon-btn.danger {
+  background: var(--primary-2);
+  color: #fff;
+}
+
+.icon-btn.danger:hover {
+  background: #b31f1f;
 }
 
 .link-btn {
   background: transparent;
-  color: var(--accent-strong);
+  color: var(--primary);
   border: none;
   margin-top: 8px;
 }
 
 .link-btn:hover {
-  color: #94681f;
+  color: #001f31;
   transform: none;
-  box-shadow: none;
 }
 
 .row {
@@ -172,8 +200,8 @@ button.danger:hover {
 }
 
 .tab-btn {
-  background: #f2e6ce;
-  color: #70572b;
+  background: #eddca8;
+  color: #52320c;
 }
 
 .tab-btn.active {
@@ -197,16 +225,17 @@ button.danger:hover {
   margin-bottom: 0;
 }
 
-.controls-row input {
-  width: 95px;
+.controls-row input,
+.controls-row select {
+  width: 120px;
 }
 
 .month-pill {
   display: inline-block;
   padding: 8px 12px;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: #70572b;
+  background: #f7e5aa;
+  color: #52320c;
   font-weight: 700;
 }
 
@@ -225,7 +254,7 @@ button.danger:hover {
   overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: #fffdf8;
+  background: #fffef8;
 }
 
 .habit-grid-table {
@@ -236,17 +265,17 @@ button.danger:hover {
 
 .habit-grid-table th,
 .habit-grid-table td {
-  border-bottom: 1px solid #e9deca;
-  border-right: 1px solid #efe5d4;
+  border-bottom: 1px solid #ece0b9;
+  border-right: 1px solid #f2e8ca;
   text-align: center;
-  min-width: 36px;
-  height: 38px;
-  padding: 4px;
+  min-width: 34px;
+  height: 32px;
+  padding: 3px;
 }
 
 .habit-grid-table th {
-  background: #f5ebd8;
-  color: #5b4a33;
+  background: #f8e8b8;
+  color: #3d2f14;
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -262,7 +291,7 @@ button.danger:hover {
   min-width: 220px;
   max-width: 220px;
   text-align: left;
-  background: #fbf4e6;
+  background: #fff6d6;
   padding: 8px 10px;
 }
 
@@ -277,11 +306,7 @@ button.danger:hover {
 .habit-actions {
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-
-.habit-actions button.small {
-  margin-left: 0;
+  gap: 6px;
 }
 
 .day-cell-wrap {
@@ -292,35 +317,34 @@ button.danger:hover {
   margin: 0;
   width: 100%;
   height: 100%;
-  min-height: 36px;
+  min-height: 28px;
   border-radius: 0;
   border: none;
-  background: #f4f0e7;
-  color: #7d6f5d;
-  font-size: 0.95rem;
+  background: #f2f0e5;
+  color: #6b6b6b;
+  font-size: 0.88rem;
   line-height: 1;
   font-weight: 700;
 }
 
 .day-cell:hover {
-  background: #ead9b6;
-  color: #544531;
-  box-shadow: none;
+  background: #f7d37a;
+  color: #332200;
   transform: none;
 }
 
 .day-cell.done {
-  background: #e0b84f;
-  color: #fff;
+  background: var(--accent-2);
+  color: #2f1f00;
 }
 
 .day-cell.today {
-  box-shadow: inset 0 0 0 2px #7f5f28;
+  box-shadow: inset 0 0 0 2px var(--primary);
 }
 
 .today-head {
-  background: #ead4a2 !important;
-  color: #4f3e25 !important;
+  background: #fcbf49 !important;
+  color: #2b1e05 !important;
 }
 
 .journal-form textarea {
@@ -333,25 +357,26 @@ button.danger:hover {
 }
 
 .timeline-item {
-  border: 1px solid #e6d7be;
-  border-left: 6px solid var(--sage);
+  border: 1px solid #e6d8ac;
+  border-left: 6px solid var(--primary);
   border-radius: 12px;
-  background: var(--card-soft);
+  background: #fff9e8;
   padding: 14px;
   margin: 12px 0;
 }
 
 .timeline-item h3 {
   margin-bottom: 4px;
+  color: var(--primary);
 }
 
 .timeline-item small {
-  color: #7d6f5d;
+  color: #5a6068;
 }
 
 .timeline-item p {
   margin: 10px 0;
-  color: #413a31;
+  color: #2a3138;
 }
 
 .entry-actions {
@@ -395,16 +420,17 @@ button.danger:hover {
     min-width: 0;
   }
 
-  .controls-row input {
-    width: 82px;
+  .controls-row input,
+  .controls-row select {
+    width: 105px;
   }
 
   .habit-grid-table th,
   .habit-grid-table td,
   .day-cell {
-    min-width: 30px;
-    height: 32px;
-    min-height: 32px;
+    min-width: 28px;
+    height: 28px;
+    min-height: 24px;
   }
 
   .habit-col {
@@ -412,3 +438,10 @@ button.danger:hover {
     max-width: 156px;
   }
 }
+
+.icon-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+

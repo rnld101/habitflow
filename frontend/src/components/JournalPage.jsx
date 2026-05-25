@@ -56,8 +56,16 @@ export default function JournalPage({ token }) {
             <small>{new Date(entry.created_at).toLocaleString()}</small>
             <p>{entry.content}</p>
             <div className="entry-actions">
-              <button className="small" onClick={() => editEntry(entry)}>Edit</button>
-              <button className="small danger" onClick={() => removeEntry(entry.id)}>Delete</button>
+              <button className="icon-btn" title="Edit entry" aria-label="Edit entry" onClick={() => editEntry(entry)}>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 17.25V20h2.75L17.8 8.95l-2.75-2.75L4 17.25zM19.71 7.04a1 1 0 0 0 0-1.42l-1.34-1.33a1 1 0 0 0-1.41 0l-1.13 1.13 2.75 2.75 1.13-1.13z" />
+                </svg>
+              </button>
+              <button className="icon-btn danger" title="Delete entry" aria-label="Delete entry" onClick={() => removeEntry(entry.id)}>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 7h12l-1 14H7L6 7zm3-3h6l1 2h4v2H4V6h4l1-2z" />
+                </svg>
+              </button>
             </div>
           </div>
         ))}

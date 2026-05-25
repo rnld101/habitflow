@@ -58,8 +58,14 @@ export default function HabitDashboard({ token }) {
       </div>
 
       <div className="row controls-row">
-        <label>Month:</label>
-        <input type="number" min="1" max="12" value={month} onChange={(e) => setMonth(Number(e.target.value))} />
+        <label htmlFor="month-select">Month:</label>
+        <select id="month-select" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
+          {Array.from({ length: 12 }, (_, idx) => idx + 1).map((m) => (
+            <option key={m} value={m}>
+              {new Date(year, m - 1, 1).toLocaleString("default", { month: "long" })}
+            </option>
+          ))}
+        </select>
         <input type="number" min="2020" max="2100" value={year} onChange={(e) => setYear(Number(e.target.value))} />
         <span className="month-pill">{monthName}</span>
       </div>
@@ -85,8 +91,16 @@ export default function HabitDashboard({ token }) {
                 <td className="habit-col habit-meta-cell">
                   <strong>{habit.name}</strong>
                   <div className="habit-actions">
-                    <button className="small" onClick={() => renameHabit(habit)}>Rename</button>
-                    <button className="small danger" onClick={() => removeHabit(habit.habit_id)}>Delete</button>
+                    <button className="icon-btn" title="Rename habit" aria-label="Rename habit" onClick={() => renameHabit(habit)}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 17.25V20h2.75L17.8 8.95l-2.75-2.75L4 17.25zM19.71 7.04a1 1 0 0 0 0-1.42l-1.34-1.33a1 1 0 0 0-1.41 0l-1.13 1.13 2.75 2.75 1.13-1.13z" />
+                      </svg>
+                    </button>
+                    <button className="icon-btn danger" title="Delete habit" aria-label="Delete habit" onClick={() => removeHabit(habit.habit_id)}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 7h12l-1 14H7L6 7zm3-3h6l1 2h4v2H4V6h4l1-2z" />
+                      </svg>
+                    </button>
                   </div>
                 </td>
                 {habit.grid.map((entry) => (
