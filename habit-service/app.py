@@ -1,10 +1,14 @@
 import calendar
 from datetime import date
+from pathlib import Path
 from typing import Optional
 
+from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Header, HTTPException, status
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+
+load_dotenv(Path(__file__).with_name(".env"))
 
 from database import Base, engine, get_db
 from models import Habit, HabitEntry, User

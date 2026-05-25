@@ -1,9 +1,13 @@
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Optional
 
+from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Header, HTTPException, status
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
+
+load_dotenv(Path(__file__).with_name(".env"))
 
 from database import Base, engine, get_db
 from models import User
