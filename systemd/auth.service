@@ -8,7 +8,7 @@ WorkingDirectory=/home/ubuntu/habitflow/auth-service
 
 EnvironmentFile=/home/ubuntu/habitflow/auth-service/.env
 
-ExecStart=/home/ubuntu/habitflow/.venv/bin/uvicorn \
+ExecStart=/home/ubuntu/habitflow/auth-service/.venv/bin/uvicorn \
 app:app \
 --host 0.0.0.0 \
 --port 8001

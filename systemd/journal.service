@@ -8,7 +8,7 @@ WorkingDirectory=/home/ubuntu/habitflow/journal-service
 
 EnvironmentFile=/home/ubuntu/habitflow/journal-service/.env
 
-ExecStart=/home/ubuntu/habitflow/.venv/bin/uvicorn \
+ExecStart=/home/ubuntu/habitflow/journal-service/.venv/bin/uvicorn \
 app:app \
 --host 0.0.0.0 \
 --port 8003
