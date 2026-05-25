@@ -1,6 +1,9 @@
 import os
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+
+load_dotenv()
 
 DB_HOST = os.getenv("RDS_ENDPOINT", "<RDS-ENDPOINT>")
 DB_NAME = os.getenv("DB_NAME", "<DB_NAME>")
