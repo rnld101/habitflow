@@ -3,7 +3,7 @@ Description=HabitFlow Journal Service
 After=network.target
 
 [Service]
-User=ec2-user
+User=ubuntu
 WorkingDirectory=/opt/habitflow/journal-service
 EnvironmentFile=/opt/habitflow/journal-service/.env
 ExecStart=/opt/habitflow/.venv/bin/uvicorn app:app --host 0.0.0.0 --port 8003
