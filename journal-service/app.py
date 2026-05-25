@@ -1,16 +1,12 @@
-import os
-import sys
 from typing import Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, status
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from shared.database import Base, engine, get_db
-from shared.models import Journal
-from shared.security import decode_access_token
+from database import Base, engine, get_db
+from models import Journal
+from security import decode_access_token
 
 Base.metadata.create_all(bind=engine)
 

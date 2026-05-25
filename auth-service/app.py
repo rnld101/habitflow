@@ -1,5 +1,3 @@
-import os
-import sys
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -7,11 +5,9 @@ from fastapi import Depends, FastAPI, Header, HTTPException, status
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from shared.database import Base, engine, get_db
-from shared.models import User
-from shared.security import (
+from database import Base, engine, get_db
+from models import User
+from security import (
     create_access_token,
     decode_access_token,
     hash_password,

@@ -13,20 +13,25 @@ habitflow/
     habitflow.conf
   sql/
     schema.sql
-  shared/
+  auth-service/
+    app.py
     database.py
     models.py
     security.py
-  auth-service/
-    app.py
     requirements.txt
     .env.example
   habit-service/
     app.py
+    database.py
+    models.py
+    security.py
     requirements.txt
     .env.example
   journal-service/
     app.py
+    database.py
+    models.py
+    security.py
     requirements.txt
     .env.example
   frontend/
