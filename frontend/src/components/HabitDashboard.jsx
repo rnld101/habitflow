@@ -91,16 +91,8 @@ export default function HabitDashboard({ token }) {
                 <td className="habit-col habit-meta-cell">
                   <strong>{habit.name}</strong>
                   <div className="habit-actions">
-                    <button className="icon-btn" title="Rename habit" aria-label="Rename habit" onClick={() => renameHabit(habit)}>
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M4 17.25V20h2.75L17.8 8.95l-2.75-2.75L4 17.25zM19.71 7.04a1 1 0 0 0 0-1.42l-1.34-1.33a1 1 0 0 0-1.41 0l-1.13 1.13 2.75 2.75 1.13-1.13z" />
-                      </svg>
-                    </button>
-                    <button className="icon-btn danger" title="Delete habit" aria-label="Delete habit" onClick={() => removeHabit(habit.habit_id)}>
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M6 7h12l-1 14H7L6 7zm3-3h6l1 2h4v2H4V6h4l1-2z" />
-                      </svg>
-                    </button>
+                    <button className="row-action-btn" title="Rename habit" aria-label="Rename habit" onClick={() => renameHabit(habit)}>Rename</button>
+                    <button className="row-action-btn danger" title="Delete habit" aria-label="Delete habit" onClick={() => removeHabit(habit.habit_id)}>Delete</button>
                   </div>
                 </td>
                 {habit.grid.map((entry) => (
@@ -110,7 +102,7 @@ export default function HabitDashboard({ token }) {
                       onClick={() => toggle(habit.habit_id, entry.day, entry.completed)}
                       title={`Day ${entry.day}`}
                     >
-                      {entry.completed ? "?" : ""}
+                      {entry.completed ? "" : ""}
                     </button>
                   </td>
                 ))}
