@@ -4,9 +4,15 @@ After=network.target
 
 [Service]
 User=ubuntu
-WorkingDirectory=/opt/habitflow/auth-service
-EnvironmentFile=/opt/habitflow/auth-service/.env
-ExecStart=/opt/habitflow/.venv/bin/uvicorn app:app --host 0.0.0.0 --port 8001
+WorkingDirectory=/home/ubuntu/habitflow/auth-service
+
+EnvironmentFile=/home/ubuntu/habitflow/auth-service/.env
+
+ExecStart=/home/ubuntu/habitflow/.venv/bin/uvicorn \
+app:app \
+--host 0.0.0.0 \
+--port 8001
+
 Restart=always
 RestartSec=3
 
