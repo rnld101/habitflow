@@ -27,6 +27,7 @@ export default function LoginPage({ onAuthed }) {
 
   return (
     <div className="card auth-card">
+      <p className="eyebrow">Sunny Habit Tracker</p>
       <h1>HabitFlow</h1>
       <h2>{title}</h2>
       <form onSubmit={submit}>

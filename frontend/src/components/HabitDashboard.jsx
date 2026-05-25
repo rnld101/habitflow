@@ -9,6 +9,10 @@ export default function HabitDashboard({ token }) {
   const [data, setData] = useState({ habits: [], days: 30 });
 
   const monthName = useMemo(() => new Date(year, month - 1, 1).toLocaleString("default", { month: "long" }), [year, month]);
+  const currentDay =
+    now.getFullYear() === year && now.getMonth() + 1 === month
+      ? now.getDate()
+      : null;
 
   async function load() {
     const res = await api.monthHabits(year, month, token);
@@ -47,40 +51,59 @@ export default function HabitDashboard({ token }) {
   }
 
   return (
-    <div className="card">
-      <h2>Habit Dashboard</h2>
-      <div className="row">
+    <div className="card dashboard-card">
+      <div className="section-head">
+        <h2>Habit Dashboard</h2>
+        <p>Track consistency day by day.</p>
+      </div>
+
+      <div className="row controls-row">
         <label>Month:</label>
         <input type="number" min="1" max="12" value={month} onChange={(e) => setMonth(Number(e.target.value))} />
         <input type="number" min="2020" max="2100" value={year} onChange={(e) => setYear(Number(e.target.value))} />
-        <span>{monthName}</span>
+        <span className="month-pill">{monthName}</span>
       </div>
-      <form onSubmit={addHabit} className="row">
+
+      <form onSubmit={addHabit} className="row add-habit-row">
         <input value={newHabit} onChange={(e) => setNewHabit(e.target.value)} placeholder="Add habit" />
-        <button>Add</button>
+        <button className="add-btn">Add</button>
       </form>
+
       <div className="table-wrap">
-        {data.habits.map((habit) => (
-          <div key={habit.habit_id} className="habit-row">
-            <div className="habit-name">
-              <strong>{habit.name}</strong>
-              <button className="small" onClick={() => renameHabit(habit)}>Rename</button>
-              <button className="small danger" onClick={() => removeHabit(habit.habit_id)}>Delete</button>
-            </div>
-            <div className="grid">
-              {habit.grid.map((entry) => (
-                <button
-                  key={entry.day}
-                  className={`day ${entry.completed ? "done" : ""}`}
-                  onClick={() => toggle(habit.habit_id, entry.day, entry.completed)}
-                  title={`Day ${entry.day}`}
-                >
-                  {entry.completed ? "?" : "?"}
-                </button>
+        <table className="habit-grid-table">
+          <thead>
+            <tr>
+              <th className="habit-col">Habits</th>
+              {Array.from({ length: data.days }, (_, idx) => idx + 1).map((day) => (
+                <th key={day} className={currentDay === day ? "today-head" : ""}>{day}</th>
               ))}
-            </div>
-          </div>
-        ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.habits.map((habit) => (
+              <tr key={habit.habit_id}>
+                <td className="habit-col habit-meta-cell">
+                  <strong>{habit.name}</strong>
+                  <div className="habit-actions">
+                    <button className="small" onClick={() => renameHabit(habit)}>Rename</button>
+                    <button className="small danger" onClick={() => removeHabit(habit.habit_id)}>Delete</button>
+                  </div>
+                </td>
+                {habit.grid.map((entry) => (
+                  <td key={entry.day} className="day-cell-wrap">
+                    <button
+                      className={`day-cell ${entry.completed ? "done" : ""} ${currentDay === entry.day ? "today" : ""}`}
+                      onClick={() => toggle(habit.habit_id, entry.day, entry.completed)}
+                      title={`Day ${entry.day}`}
+                    >
+                      {entry.completed ? "?" : ""}
+                    </button>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

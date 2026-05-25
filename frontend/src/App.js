@@ -38,14 +38,24 @@ export default function App() {
   return (
     <main className="container">
       <header className="card header-row">
-        <div>
+        <div className="brand-block">
           <h1>HabitFlow</h1>
           <p>{user?.email}</p>
         </div>
-        <div className="row">
-          <button onClick={() => setTab("habits")}>Habits</button>
-          <button onClick={() => setTab("journal")}>Journal</button>
-          <button className="danger" onClick={logout}>Logout</button>
+        <div className="row nav-actions">
+          <button
+            className={`tab-btn ${tab === "habits" ? "active" : ""}`}
+            onClick={() => setTab("habits")}
+          >
+            Habits
+          </button>
+          <button
+            className={`tab-btn ${tab === "journal" ? "active" : ""}`}
+            onClick={() => setTab("journal")}
+          >
+            Journal
+          </button>
+          <button className="danger logout-btn" onClick={logout}>Logout</button>
         </div>
       </header>
       {tab === "habits" ? <HabitDashboard token={token} /> : <JournalPage token={token} />}

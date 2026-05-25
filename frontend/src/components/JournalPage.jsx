@@ -39,12 +39,15 @@ export default function JournalPage({ token }) {
   }
 
   return (
-    <div className="card">
-      <h2>Journal Timeline</h2>
+    <div className="card journal-card">
+      <div className="section-head">
+        <h2>Journal Timeline</h2>
+        <p>Capture your wins, thoughts, and reflections.</p>
+      </div>
       <form onSubmit={addEntry} className="journal-form">
         <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Entry title" required />
         <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder="Write your thoughts" required />
-        <button>Add Entry</button>
+        <button className="add-btn">Add Entry</button>
       </form>
       <div className="timeline">
         {entries.map((entry) => (
@@ -52,8 +55,10 @@ export default function JournalPage({ token }) {
             <h3>{entry.title}</h3>
             <small>{new Date(entry.created_at).toLocaleString()}</small>
             <p>{entry.content}</p>
-            <button className="small" onClick={() => editEntry(entry)}>Edit</button>
-            <button className="small danger" onClick={() => removeEntry(entry.id)}>Delete</button>
+            <div className="entry-actions">
+              <button className="small" onClick={() => editEntry(entry)}>Edit</button>
+              <button className="small danger" onClick={() => removeEntry(entry.id)}>Delete</button>
+            </div>
           </div>
         ))}
       </div>
